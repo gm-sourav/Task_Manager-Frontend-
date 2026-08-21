@@ -74,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun goToTaskList() {
 
-        Toast.makeText(this, "Login successful! (TaskListActivity porer step e banabo)", Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, TaskListActivity::class.java))
+        finish()
     }
 }

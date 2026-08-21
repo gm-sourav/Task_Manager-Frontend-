@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity() {
                     val token = response.body()!!.token
                     tokenManager.saveToken(token)
                     Toast.makeText(this@RegisterActivity, "Registration Successful", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this@RegisterActivity, "Login e chole jao ekhon", Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@RegisterActivity, TaskListActivity::class.java))
                     finish()
                 } else {
                     Toast.makeText(this@RegisterActivity, "Registration failed. Email might already exist.", Toast.LENGTH_SHORT).show()
