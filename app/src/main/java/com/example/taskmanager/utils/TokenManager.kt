@@ -23,7 +23,7 @@ class TokenManager(context: Context) {
         prefs.edit().remove(KEY_TOKEN).apply()
     }
 
-    fun isoLoggedIn(): Boolean {
+    fun isLoggedIn(): Boolean {
         return getToken() != null
     }
 }
