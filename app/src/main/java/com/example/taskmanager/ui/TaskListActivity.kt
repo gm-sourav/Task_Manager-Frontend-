@@ -35,8 +35,7 @@ class TaskListActivity : AppCompatActivity() {
         }
 
         binding.fabAddTask.setOnClickListener {
-            // Porer step e AddTaskActivity banabo
-            Toast.makeText(this, "Add Task screen porer step e banabo", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, AddTaskActivity::class.java))
         }
     }
 

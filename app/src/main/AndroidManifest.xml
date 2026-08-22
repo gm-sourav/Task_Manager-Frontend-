@@ -40,6 +40,10 @@
             android:name=".ui.TaskListActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.AddTaskActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
