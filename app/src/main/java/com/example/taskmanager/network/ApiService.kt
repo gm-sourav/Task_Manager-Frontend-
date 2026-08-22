@@ -5,6 +5,7 @@ import com.example.taskmanager.model.LoginRequest
 import com.example.taskmanager.model.RegisterRequest
 import com.example.taskmanager.model.TaskRequest
 import com.example.taskmanager.model.TaskResponse
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -49,11 +50,12 @@ interface ApiService {
     ): Response<TaskResponse>
 
 
-    @HTTP(method = "api/tasks/{id}/status")
+    @PATCH("api/tasks/{id}/status")
     suspend fun updateStatus(
-        @Header("authorization") token: String,
+        @Header("Authorization") token: String,
         @Path("id") taskId: Long,
-        @Query("status") status: String
+        @Query("status") status: String,
+        @Body body: RequestBody
     ): Response<TaskResponse>
 
     @DELETE("api/tasks/{id}")

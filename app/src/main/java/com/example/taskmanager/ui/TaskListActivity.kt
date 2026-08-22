@@ -12,6 +12,8 @@ import com.example.taskmanager.model.TaskResponse
 import com.example.taskmanager.network.RetrofitClient
 import com.example.taskmanager.utils.TokenManager
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 
 class TaskListActivity : AppCompatActivity() {
 
@@ -86,10 +88,11 @@ class TaskListActivity : AppCompatActivity() {
 
     private fun completeTask(task: TaskResponse) {
         val token = "Bearer " + tokenManager.getToken()
+        val emptyBody = "".toRequestBody("text/plain".toMediaTypeOrNull())
 
         lifecycleScope.launch {
             try {
-                val response = RetrofitClient.instance.updateStatus(token, task.id, "COMPLETED")
+                val response = RetrofitClient.instance.updateStatus(token, task.id, "COMPLETED", emptyBody)
                 if (response.isSuccessful) {
                     Toast.makeText(this@TaskListActivity, "Task completed!", Toast.LENGTH_SHORT).show()
                     loadTasks()
