@@ -44,7 +44,7 @@ class TaskAdapter(
             holder.binding.btnComplete.isEnabled = true
         }
 
-        holder.binding.root.setOnClickListener {
+        holder.binding.btnEdit.setOnClickListener {
             onItemClick(task)
         }
 
