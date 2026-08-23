@@ -13,7 +13,8 @@ import com.example.taskmanager.model.TaskResponse
 class TaskAdapter(
     private var taskList: List<TaskResponse>,
     private val onCompleteClick: (TaskResponse) -> Unit,
-    private val onDeleteClick: (TaskResponse) -> Unit
+    private val onDeleteClick: (TaskResponse) -> Unit,
+    private val onItemClick : (TaskResponse) -> Unit
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(val binding: ItemTaskBinding) :
@@ -41,6 +42,10 @@ class TaskAdapter(
         } else {
             holder.binding.btnComplete.text = "Complete"
             holder.binding.btnComplete.isEnabled = true
+        }
+
+        holder.binding.root.setOnClickListener {
+            onItemClick(task)
         }
 
         holder.binding.btnComplete.setOnClickListener {
