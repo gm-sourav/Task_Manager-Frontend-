@@ -69,6 +69,13 @@
             android:gravity="end">
 
             <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:textSize="12sp" />
+
+            <Button
                 android:id="@+id/btnComplete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
