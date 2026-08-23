@@ -72,6 +72,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun goToTaskList() {
 
         startActivity(Intent(this, TaskListActivity::class.java))
