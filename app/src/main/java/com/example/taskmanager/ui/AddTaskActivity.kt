@@ -67,10 +67,7 @@ class AddTaskActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
-        return true
-    }
+
 
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
