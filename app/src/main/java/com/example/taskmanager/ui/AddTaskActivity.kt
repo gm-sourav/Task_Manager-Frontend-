@@ -23,12 +23,16 @@ class AddTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = if (taskId != null) "Edit Task" else "Add New Task"
-
+//
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.title = if (taskId != null) "Edit Task" else "Add New Task"
 
         tokenManager = TokenManager(this)
+
+        binding.tvBack.setOnClickListener {
+            finish()
+        }
+
 
         // Edit mode kina check koro
         taskId = intent.getLongExtra("TASK_ID", -1L).let { if (it == -1L) null else it }
