@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.databinding.ItemTaskBinding
 import com.example.taskmanager.model.TaskResponse
 
+
+
+
 class TaskAdapter(
     private var taskList: List<TaskResponse>,
     private val onCompleteClick: (TaskResponse) -> Unit,
