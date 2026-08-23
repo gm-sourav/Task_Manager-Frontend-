@@ -105,6 +105,8 @@ class TaskListActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun deleteTask(task: TaskResponse) {
         val token = "Bearer " + tokenManager.getToken()
 
