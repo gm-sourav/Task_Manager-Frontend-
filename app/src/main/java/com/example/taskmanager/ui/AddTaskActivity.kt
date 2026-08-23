@@ -24,6 +24,10 @@ class AddTaskActivity : AppCompatActivity() {
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = if (taskId != null) "Edit Task" else "Add New Task"
+
+
         tokenManager = TokenManager(this)
 
         // Edit mode kina check koro
