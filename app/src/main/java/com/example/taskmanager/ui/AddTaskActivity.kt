@@ -17,6 +17,7 @@ class AddTaskActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddTaskBinding
     private lateinit var tokenManager: TokenManager
+    private var taskId: Long? = null   // null hole Add mode, value thakle Edit mode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,30 @@ class AddTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         tokenManager = TokenManager(this)
+
+        // Edit mode kina check koro
+        taskId = intent.getLongExtra("TASK_ID", -1L).let { if (it == -1L) null else it }
+
+        if (taskId != null) {
+            // Edit mode - existing data fill koro
+            binding.etTitle.setText(intent.getStringExtra("TASK_TITLE"))
+            binding.etDescription.setText(intent.getStringExtra("TASK_DESCRIPTION"))
+            binding.etDeadline.setText(intent.getStringExtra("TASK_DEADLINE"))
+
+            when (intent.getStringExtra("TASK_PRIORITY")) {
+                "HIGH" -> binding.rbHigh.isChecked = true
+                "MEDIUM" -> binding.rbMedium.isChecked = true
+                "LOW" -> binding.rbLow.isChecked = true
+            }
+
+            when (intent.getStringExtra("TASK_CATEGORY")) {
+                "WORK" -> binding.rbWork.isChecked = true
+                "PERSONAL" -> binding.rbPersonal.isChecked = true
+                "STUDY" -> binding.rbStudy.isChecked = true
+            }
+
+            binding.btnSaveTask.text = "Update Task"
+        }
 
         binding.etDeadline.setOnClickListener {
             showDatePicker()
@@ -73,21 +98,25 @@ class AddTaskActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.VISIBLE
         binding.btnSaveTask.isEnabled = false
 
+        val request = TaskRequest(title, description, deadline, priority, category)
+
         lifecycleScope.launch {
             try {
-                val response = RetrofitClient.instance.createTask(
-                    token,
-                    TaskRequest(title, description, deadline, priority, category)
-                )
+                val response = if (taskId != null) {
+                    RetrofitClient.instance.updateTask(token, taskId!!, request)
+                } else {
+                    RetrofitClient.instance.createTask(token, request)
+                }
 
                 binding.progressBar.visibility = View.GONE
                 binding.btnSaveTask.isEnabled = true
 
                 if (response.isSuccessful) {
-                    Toast.makeText(this@AddTaskActivity, "Task added successfully!", Toast.LENGTH_SHORT).show()
+                    val message = if (taskId != null) "Task updated successfully!" else "Task added successfully!"
+                    Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    Toast.makeText(this@AddTaskActivity, "Failed to add task", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddTaskActivity, "Failed to save task", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 binding.progressBar.visibility = View.GONE
