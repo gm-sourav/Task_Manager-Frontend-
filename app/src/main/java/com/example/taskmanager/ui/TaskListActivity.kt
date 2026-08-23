@@ -50,10 +50,22 @@ class TaskListActivity : AppCompatActivity() {
         adapter = TaskAdapter(
             taskList = emptyList(),
             onCompleteClick = { task -> completeTask(task) },
-            onDeleteClick = { task -> deleteTask(task) }
+            onDeleteClick = { task -> deleteTask(task) },
+            onItemClick = { task -> openEditTask(task) }   // notun
         )
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewTasks.adapter = adapter
+    }
+
+    private fun openEditTask(task: TaskResponse) {
+        val intent = Intent(this, AddTaskActivity::class.java)
+        intent.putExtra("TASK_ID", task.id)
+        intent.putExtra("TASK_TITLE", task.title)
+        intent.putExtra("TASK_DESCRIPTION", task.description)
+        intent.putExtra("TASK_DEADLINE", task.deadline)
+        intent.putExtra("TASK_PRIORITY", task.priority)
+        intent.putExtra("TASK_CATEGORY", task.category)
+        startActivity(intent)
     }
 
     private fun loadTasks() {
