@@ -1,144 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_back_arrow" />
 
-        <TextView
-            android:id="@+id/tvBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="← Back"
-            android:textSize="16sp"
-            android:textColor="#2196F3"
-            android:padding="8dp"
-            android:layout_marginBottom="16dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add New Task"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
-
-        <EditText
-            android:id="@+id/etTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task Title"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <EditText
-            android:id="@+id/etDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:layout_marginBottom="16dp" />
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Task Title"
+                android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/etDeadline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Deadline (YYYY-MM-DD)"
-            android:focusable="false"
-            android:layout_marginBottom="16dp" />
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Priority"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            <EditText
+                android:id="@+id/etDeadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Deadline (YYYY-MM-DD)"
+                android:focusable="false"
+                android:layout_marginBottom="16dp" />
 
-        <RadioGroup
-            android:id="@+id/rgPriority"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <RadioButton
-                android:id="@+id/rbHigh"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="High" />
+                android:text="Priority"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-            <RadioButton
-                android:id="@+id/rbMedium"
+            <RadioGroup
+                android:id="@+id/rgPriority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <RadioButton
+                    android:id="@+id/rbHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High" />
+
+                <RadioButton
+                    android:id="@+id/rbMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:checked="true"
+                    android:layout_marginStart="16dp" />
+
+                <RadioButton
+                    android:id="@+id/rbLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low"
+                    android:layout_marginStart="16dp" />
+
+            </RadioGroup>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medium"
-                android:checked="true"
-                android:layout_marginStart="16dp" />
+                android:text="Category"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
 
-            <RadioButton
-                android:id="@+id/rbLow"
+            <RadioGroup
+                android:id="@+id/rgCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+
+                <RadioButton
+                    android:id="@+id/rbWork"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Work"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/rbPersonal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personal"
+                    android:layout_marginStart="16dp" />
+
+                <RadioButton
+                    android:id="@+id/rbStudy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study"
+                    android:layout_marginStart="16dp" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnSaveTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Task" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Low"
-                android:layout_marginStart="16dp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="gone" />
 
-        </RadioGroup>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+    </ScrollView>
 
-        <RadioGroup
-            android:id="@+id/rgCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="24dp">
-
-            <RadioButton
-                android:id="@+id/rbWork"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Work"
-                android:checked="true" />
-
-            <RadioButton
-                android:id="@+id/rbPersonal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Personal"
-                android:layout_marginStart="16dp" />
-
-            <RadioButton
-                android:id="@+id/rbStudy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Study"
-                android:layout_marginStart="16dp" />
-
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btnSaveTask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save Task" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
