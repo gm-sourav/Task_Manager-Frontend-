@@ -25,8 +25,7 @@ class AddTaskActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationOnClickListener {
+        binding.btnCancel.setOnClickListener {
             finish()
         }
 //
