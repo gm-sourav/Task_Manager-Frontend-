@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.taskmanager.databinding.ActivityRegisterBinding
 import com.example.taskmanager.model.RegisterRequest
@@ -20,6 +22,15 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(24.dpToPx(), systemBars.top + 24.dpToPx(), 24.dpToPx(), systemBars.bottom + 24.dpToPx())
+            insets
+        }
+
+
         tokenManager = TokenManager(this)
 
         binding.btnRegister.setOnClickListener {
@@ -38,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.tvGoToLogin.setOnClickListener {
             finish()
         }
+
     }
 
     private fun registerUser(name: String, email: String, password: String) {
@@ -68,5 +80,9 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this@RegisterActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun Int.dpToPx(): Int {
+        return (this * resources.displayMetrics.density).toInt()
     }
 }

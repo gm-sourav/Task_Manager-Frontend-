@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.taskmanager.databinding.ActivityLoginBinding
 import com.example.taskmanager.model.LoginRequest
 import com.example.taskmanager.network.RetrofitClient
 import com.example.taskmanager.utils.TokenManager
 import kotlinx.coroutines.launch
+import kotlin.text.toInt
 
 
 class LoginActivity : AppCompatActivity() {
@@ -21,6 +24,16 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(24.dpToPx(), systemBars.top + 24.dpToPx(), 24.dpToPx(), systemBars.bottom + 24.dpToPx())
+            insets
+        }
+
+
+
         tokenManager = TokenManager(this)
 
         if (tokenManager.isLoggedIn()) {
@@ -79,4 +92,12 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, TaskListActivity::class.java))
         finish()
     }
+
+
+
+
+    private fun Int.dpToPx(): Int {
+        return (this * resources.displayMetrics.density).toInt()
+    }
 }
+
