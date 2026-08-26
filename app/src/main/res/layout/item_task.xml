@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
@@ -71,25 +70,33 @@
 
             <Button
                 android:id="@+id/btnEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
                 android:text="Edit"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:padding="4dp" />
 
             <Button
                 android:id="@+id/btnComplete"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
                 android:text="Complete"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:padding="4dp" />
 
             <Button
                 android:id="@+id/btnDelete"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
                 android:text="Delete"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:padding="4dp" />
 
         </LinearLayout>
 
