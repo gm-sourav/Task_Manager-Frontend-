@@ -21,7 +21,8 @@
         android:layout_marginBottom="16dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -30,7 +31,8 @@
         android:layout_marginBottom="24dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:minHeight="48dp" />
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" />
 
     <Button
         android:id="@+id/btnLogin"
